@@ -18,6 +18,8 @@ public class UserController implements Initializable {
     @FXML
     private Label registrationMessageLabel;
     @FXML
+    private Label registrationErrorMessageLabel;
+    @FXML
     private Button homeButton;
     @FXML
     private TextField fullNameFiled;
@@ -34,16 +36,21 @@ public class UserController implements Initializable {
     private final String[] userRoles = {"Student", "Staff"};
 
     public void registerButtonOnAction(ActionEvent e) {
-        User user = new User();
-        user.setFullName(fullNameFiled.getText());
-        user.setCquEmail(cquEmailField.getText());
-        user.setPassword(passwordField.getText());
-        user.setType(userRoleChoiceBox.getValue());
-        user.setAddress(addressField.getText());
-        user.setPhoneNumber(phoneNumberField.getText());
-        new UserRegistrationService().userRegistration(user);
 
-        registrationMessageLabel.setText("User has been registered successfully!");
+        if (!fullNameFiled.getText().isBlank() || !cquEmailField.getText().isBlank() || !passwordField.getText().isBlank() || !addressField.getText().isBlank() || !phoneNumberField.getText().isBlank()) {
+            User user = new User();
+            user.setFullName(fullNameFiled.getText());
+            user.setCquEmail(cquEmailField.getText());
+            user.setPassword(passwordField.getText());
+            user.setType(userRoleChoiceBox.getValue());
+            user.setAddress(addressField.getText());
+            user.setPhoneNumber(phoneNumberField.getText());
+            new UserRegistrationService().userRegistration(user);
+
+            registrationMessageLabel.setText("User has been registered successfully!");
+        } else {
+            registrationErrorMessageLabel.setText("Every fields must be filed!");
+        }
     }
 
     public void goToHomeButton(ActionEvent e) {

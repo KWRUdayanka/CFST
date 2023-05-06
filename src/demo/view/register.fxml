@@ -58,5 +58,6 @@
       <Label fx:id="registrationMessageLabel" alignment="CENTER" layoutX="226.0" layoutY="82.0" textFill="#276bff" />
       <ChoiceBox fx:id="userRoleChoiceBox" layoutX="209.0" layoutY="229.0" prefHeight="26.0" prefWidth="367.0" />
       <PasswordField fx:id="passwordField" layoutX="209.0" layoutY="187.0" prefHeight="26.0" prefWidth="367.0" />
+      <Label fx:id="registrationErrorMessageLabel" alignment="CENTER" layoutX="236.0" layoutY="92.0" textFill="RED" />
    </children>
 </AnchorPane>

@@ -35,6 +35,15 @@ public class LoginController {
 
     @FXML
     public void onLogin() {
+
+        if (!emailFiled.getText().isBlank() && !passwordField.getText().isBlank()) {
+            loginValidation();
+        } else {
+            userLoggingLabel.setText("Please Enter Username and password.");
+        }
+    }
+
+    private void loginValidation() {
         Login login = new Login();
         login.setCquEmail(emailFiled.getText());
         login.setPassword(passwordField.getText());
