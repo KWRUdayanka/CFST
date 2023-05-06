@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #65CD03;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controller.HomeScreenController">
+    <children>
+        <Label layoutX="128.0" layoutY="36.0" text="Let's Save Our Mother Nature!" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <Button fx:id="viewMyProfileButton" layoutX="128.0" layoutY="89.0" mnemonicParsing="false" onAction="#onViewMyProfile" style="-fx-background-color: #979797;" text="View My Profile" textFill="WHITE" />
+        <Button fx:id="addDeviceInformationButton" layoutX="107.0" layoutY="147.0" mnemonicParsing="false" onAction="#onAddDeviceInformation" style="-fx-background-color: #979797;" text="Add Device Information" textFill="WHITE" />
+        <Button layoutX="370.0" layoutY="147.0" mnemonicParsing="false" style="-fx-background-color: #979797;" text="Calculate My CF" textFill="WHITE" />
+        <Button fx:id="viweMyDeviceButton" layoutX="371.0" layoutY="89.0" mnemonicParsing="false" onAction="#onViewMyDevice" style="-fx-background-color: #979797;" text="View My Device" textFill="WHITE" />
+        <Button layoutX="271.0" layoutY="269.0" mnemonicParsing="false" style="-fx-background-color: #979797;" text="View CF" textFill="WHITE" />
+      <Button layoutX="126.0" layoutY="210.0" mnemonicParsing="false" style="-fx-background-color: #979797;" text="Genarate Report" textFill="WHITE" />
+      <Button layoutX="366.0" layoutY="210.0" mnemonicParsing="false" style="-fx-background-color: #979797;" text="Calculate Total CF" textFill="WHITE" />
+      <Button fx:id="logOutButton" layoutX="271.0" layoutY="319.0" mnemonicParsing="false" onAction="#onLogOut" style="-fx-background-color: #979797;" text="Log Out" textFill="WHITE" />
+    </children>
+</AnchorPane>
