@@ -153,7 +153,7 @@ public class HomeScreenController {
             alert.showAndWait();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
     }
