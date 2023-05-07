@@ -5,7 +5,7 @@ public class Device {
     private String ownership;
     private String usageOfDevice;
     private String manufacturedDate;
-    private String purchasedDate;
+    private String deviceMode;
     private String location;
     private int userId;
 
@@ -41,12 +41,12 @@ public class Device {
         this.manufacturedDate = manufacturedDate;
     }
 
-    public String getPurchasedDate() {
-        return purchasedDate;
+    public String getDeviceMode() {
+        return deviceMode;
     }
 
-    public void setPurchasedDate(String purchasedDate) {
-        this.purchasedDate = purchasedDate;
+    public void setDeviceMode(String deviceMode) {
+        this.deviceMode = deviceMode;
     }
 
     public String getLocation() {

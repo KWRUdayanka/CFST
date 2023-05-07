@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #65CD03;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controller.MyDevicesController">
    <children>
-      <Label layoutX="257.0" layoutY="36.0" text="Devices" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
-      <Button fx:id="homeButton" layoutX="474.0" layoutY="338.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #979797;" text="Home" textFill="WHITE" />
+      <Button fx:id="homeButton" layoutX="249.0" layoutY="357.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #979797;" text="Home" textFill="WHITE" />
+      <TableView fx:id="deviceTable" layoutX="6.0" prefHeight="344.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <columns>
+            <TableColumn fx:id="deviceType" prefWidth="149.0" text="Device Type" />
+            <TableColumn fx:id="ownership" prefWidth="149.0" text="Ownership" />
+            <TableColumn fx:id="usage" prefWidth="150.0" text="Usage" />
+            <TableColumn fx:id="location" prefWidth="151.0" text="Location" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

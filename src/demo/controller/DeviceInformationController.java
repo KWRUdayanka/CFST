@@ -21,8 +21,10 @@ public class DeviceInformationController implements Initializable{
     @FXML
     private Label saveDeviceSuccessMessage;
     @FXML
+    private Label saveDeviceErrorMessage;
+    @FXML
     public ChoiceBox<String> deviceTypeChoiceBox;
-    private final String[] deviceTypes = {"Desktop PC", "Large Screen", "Laptop", "Monitor"};
+    private final String[] deviceTypes = {"Desktop + Screen", "Laptop + Screen", "Desktop + 2 screens", "Laptop + screen at office + screen at home" + "Desktop + screen + laptop"};
     @FXML
     private ChoiceBox<String> ownershipChoiceBox;
     private final String[] ownership = {"Owned","University"};
@@ -32,27 +34,35 @@ public class DeviceInformationController implements Initializable{
     @FXML
     private TextField manufacturedDateFiled;
     @FXML
-    private TextField purchasedDateFiled;
+    private ChoiceBox<String> deviceModeChoiceBox;
+    private final String [] deviceMode = {"Active", "With default power saving features", "Shutdown when not in use", "Turned off at wall when not in use"};
+
     @FXML
     private ChoiceBox<String> locationChoiceBox;
-    private String[] location = {"Home", "Campus"};
+    private final String[] location = {"Home", "Campus"};
     @FXML
     public static User user;
 
     @FXML
     private void onSaveDevice() {
-        Device device = new Device();
-        device.setDeviceType(deviceTypeChoiceBox.getValue());
-        device.setOwnership(ownershipChoiceBox.getValue());
-        device.setUsageOfDevice(usageChoiceBox.getValue());
-        device.setManufacturedDate(manufacturedDateFiled.getText());
-        device.setPurchasedDate(purchasedDateFiled.getText());
-        device.setLocation(locationChoiceBox.getValue());
-        device.setUserId(user.getUsrID());
+        if (deviceTypeChoiceBox.getValue().equals("Device Type") || ownershipChoiceBox.getValue().equals("Owner Ship")
+                || usageChoiceBox.getValue().equals("Usage of Device") || locationChoiceBox.getValue().equals("Location")
+                || deviceModeChoiceBox.getValue().equals("Device Mode")) {
+            saveDeviceErrorMessage.setText("Dropbox data should Not be empty!");
+        } else {
+            Device device = new Device();
+            device.setDeviceType(deviceTypeChoiceBox.getValue());
+            device.setOwnership(ownershipChoiceBox.getValue());
+            device.setUsageOfDevice(usageChoiceBox.getValue());
+            device.setManufacturedDate(manufacturedDateFiled.getText());
+            device.setDeviceMode(deviceModeChoiceBox.getValue());
+            device.setLocation(locationChoiceBox.getValue());
+            device.setUserId(user.getUsrID());
 
-        new AddDeviceService().addDeviceToDatabase(device);
+            new AddDeviceService().addDeviceToDatabase(device);
 
-        saveDeviceSuccessMessage.setText("Save Device Successfully!");
+            saveDeviceSuccessMessage.setText("Save Device Successfully!");
+        }
     }
 
     @FXML
@@ -71,6 +81,8 @@ public class DeviceInformationController implements Initializable{
         usageChoiceBox.setValue("Usage of Device");
         locationChoiceBox.getItems().addAll(location);
         locationChoiceBox.setValue("Location");
+        deviceModeChoiceBox.getItems().addAll(deviceMode);
+        deviceModeChoiceBox.setValue("Device Mode");
     }
 
     public void setUserInformation(User staticUser) {

@@ -27,7 +27,7 @@ public class AddDeviceService {
             preparedStatement.setString(2,device.getOwnership());
             preparedStatement.setString(3,device.getUsageOfDevice());
             preparedStatement.setString(4,device.getManufacturedDate());
-            preparedStatement.setString(5,device.getPurchasedDate());
+            preparedStatement.setString(5,device.getDeviceMode());
             preparedStatement.setString(6,device.getLocation());
             preparedStatement.setInt(7,device.getUserId());
 
@@ -39,16 +39,16 @@ public class AddDeviceService {
         }
     }
 
-    private static final String addDeviceDetailSQL = "INSERT INTO TBL_DEVICES(DEVICE_TYPE,OWNERSHIP,USAGE,MANUFACTURED_DATE,PURCHASED_DATE,LOCATION,USER_ID)" +
+    private static final String addDeviceDetailSQL = "INSERT INTO TBL_DEVICES(DEVICE_TYPE,OWNERSHIP,DEVICE_USAGE,MANUFACTURED_DATE,DEVICE_MODE,LOCATION,USER_ID)" +
             " VALUES(?,?,?,?,?,?,?)";
 
     private static final String createDeviceTable =   "CREATE TABLE IF NOT EXISTS TBL_DEVICES " +
             "(ID int NOT NULL AUTO_INCREMENT, " +
-            " DEVICE_TYPE VARCHAR(255) NOT NULL, " +
-            " OWNERSHIP VARCHAR(255) NOT NULL, " +
-            " USAGE VARCHAR(255), " +
+            " DEVICE_TYPE VARCHAR(255), " +
+            " OWNERSHIP VARCHAR(255), " +
+            " DEVICE_USAGE VARCHAR(255), " +
             " MANUFACTURED_DATE VARCHAR(15), " +
-            " PURCHASED_DATE VARCHAR(225), " +
+            " DEVICE_MODE VARCHAR(225), " +
             " LOCATION VARCHAR(225), " +
             " USER_ID int NOT NULL, " +
             " PRIMARY KEY ( ID )," +

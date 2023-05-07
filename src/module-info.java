@@ -4,6 +4,7 @@ module demo {
     requires java.sql;
     requires mysql.connector.j;
     requires javafx.graphics;
+    requires org.apache.poi.ooxml;
 
 
     exports demo;

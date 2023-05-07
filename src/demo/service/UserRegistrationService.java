@@ -68,11 +68,11 @@ public class UserRegistrationService {
 
     private static final String createUserTable =   "CREATE TABLE IF NOT EXISTS TBL_USER " +
             "(USER_ID int NOT NULL AUTO_INCREMENT, " +
-            " FULL_NAME VARCHAR(255) NOT NULL, " +
-            " CQU_EMAIL VARCHAR(255) NOT NULL, " +
+            " FULL_NAME VARCHAR(255) NOT NULL UNIQUE, " +
+            " CQU_EMAIL VARCHAR(255) NOT NULL UNIQUE, " +
             " PASSWORD VARCHAR(255) NOT NULL, " +
             " TYPE VARCHAR(15) NOT NULL, " +
             " ADDRESS VARCHAR(225), " +
-            " PHONE_NUMBER VARCHAR(225), " +
+            " PHONE_NUMBER VARCHAR(225) UNIQUE, " +
             " PRIMARY KEY ( USER_ID ))";
 }

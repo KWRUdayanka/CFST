@@ -29,11 +29,6 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="purchasedDateFiled" layoutX="300.0" layoutY="214.0" prefHeight="25.0" prefWidth="282.0" promptText="Purchased Date">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </TextField>
       <Button layoutX="338.0" layoutY="326.0" mnemonicParsing="false" onAction="#onSaveDevice" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #979797;" text="Save" textFill="WHITE" />
       <Button fx:id="homeButton" layoutX="474.0" layoutY="326.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #979797;" text="Home" textFill="WHITE" />
       <Label fx:id="saveDeviceSuccessMessage" layoutX="337.0" layoutY="360.0" prefHeight="17.0" prefWidth="216.0" textFill="#276bff" />
@@ -41,5 +36,7 @@
       <ChoiceBox fx:id="ownershipChoiceBox" layoutX="300.0" layoutY="80.0" prefHeight="30.0" prefWidth="282.0" />
       <ChoiceBox fx:id="usageChoiceBox" layoutX="300.0" layoutY="125.0" prefHeight="30.0" prefWidth="282.0" />
       <ChoiceBox fx:id="locationChoiceBox" layoutX="300.0" layoutY="259.0" prefHeight="30.0" prefWidth="282.0" />
+      <Label fx:id="saveDeviceErrorMessage" layoutX="337.0" layoutY="360.0" prefHeight="17.0" prefWidth="216.0" textFill="RED" />
+      <ChoiceBox fx:id="deviceModeChoiceBox" layoutX="300.0" layoutY="214.0" prefHeight="30.0" prefWidth="282.0" />
    </children>
 </AnchorPane>

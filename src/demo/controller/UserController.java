@@ -33,7 +33,7 @@ public class UserController implements Initializable {
     private TextField phoneNumberField;
     @FXML
     private ChoiceBox<String> userRoleChoiceBox;
-    private final String[] userRoles = {"Student", "Staff"};
+    private final String[] userRoles = {"Student", "Staff", "Manager"};
 
     public void registerButtonOnAction(ActionEvent e) {
 
