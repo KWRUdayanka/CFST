@@ -1,3 +1,10 @@
+/**
+*  This class is responsible for adding device details to the database
+*  It uses DBConnection class to establish a connection to the database
+*  It uses the addDeviceDetailSQL to insert the device details into the database
+*  It also creates a device table in the database if it does not exist
+*  It throws a RuntimeException if there is an SQL exception
+* */
 package demo.service;
 
 import demo.DBConnection;
@@ -16,12 +23,15 @@ public class AddDeviceService {
         PreparedStatement preparedStatement = null;
 
         try {
+            // get db connection
             dbConnection = conn.getConnection();
 
+            // create device table if not exists
             statement = dbConnection.createStatement();
             statement.executeUpdate(createDeviceTable);
             statement.close();
 
+            // insert device details into table
             preparedStatement = dbConnection.prepareStatement(addDeviceDetailSQL);
             preparedStatement.setString(1,device.getDeviceType());
             preparedStatement.setString(2,device.getOwnership());
@@ -39,9 +49,11 @@ public class AddDeviceService {
         }
     }
 
+    // SQL statement to insert device details into the database
     private static final String addDeviceDetailSQL = "INSERT INTO TBL_DEVICES(DEVICE_TYPE,OWNERSHIP,DEVICE_USAGE,MANUFACTURED_DATE,DEVICE_MODE,LOCATION,USER_ID)" +
             " VALUES(?,?,?,?,?,?,?)";
 
+    // SQL statement to create device table if not exists
     private static final String createDeviceTable =   "CREATE TABLE IF NOT EXISTS TBL_DEVICES " +
             "(ID int NOT NULL AUTO_INCREMENT, " +
             " DEVICE_TYPE VARCHAR(255), " +

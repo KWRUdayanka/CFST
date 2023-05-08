@@ -34,23 +34,28 @@ public class MyDevicesController implements Initializable {
     @FXML
     private TableColumn<Device,String> location;
     @FXML
-    private static User user;
+    private static User user; // Current user
 
+    // Method to set user information
     public void setUserInformation(User staticUser) {
         user = staticUser;
         List<Device> devices = new DeviceDetailsService().getDeviceDetails(user.getUsrID());
         if (!devices.isEmpty()) {
+            // Create an observable list of DeviceList objects to populate the table
             ObservableList<DeviceList> list = FXCollections.observableArrayList();
             devices.forEach(x -> list.addAll(new DeviceList(x.getDeviceType(), x.getOwnership(), x.getUsageOfDevice(), x.getLocation())));
             deviceTable.setItems(list);
         }
     }
+
+    // Method to handle going back to the home screen
     @FXML
     private void goToHome() {
         Stage stage = (Stage) homeButton.getScene().getWindow();
         stage.close();
     }
 
+    // Method to initialize the table columns
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         deviceType.setCellValueFactory(new PropertyValueFactory<Device,String>("Device Type"));

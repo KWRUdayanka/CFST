@@ -26,17 +26,19 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class HomeScreenController {
 
-    @FXML
-    private Button generateReportButton;
+
     @FXML
     private Label welcomeMessage;
     @FXML
     private Button logOutButton;
     @FXML
-    public static User staticUser;
+    public static User staticUser; // Current user
+
+    // Create a new instance of HomeScreenController class.
     ConcurrentHashMap<String, Double> annualCOTwoe = new ConcurrentHashMap<>();
 
     public HomeScreenController() {
+        // Initialize a ConcurrentHashMap object with the annual CO2e emissions for each device type and mode.
         annualCOTwoe.put("Desktop + Screen",621.0);
         annualCOTwoe.put("Laptop + Screen",691.0);
         annualCOTwoe.put("Desktop + 2 screens",903.0);
@@ -45,9 +47,10 @@ public class HomeScreenController {
         annualCOTwoe.put("Active",73.0);
         annualCOTwoe.put("With default power saving features",37.0);
         annualCOTwoe.put("Shutdown when not in use",17.6);
-        annualCOTwoe.put("Turned off at wall when not in use",14.7);
+        // These emissions are measured in kg of CO2e emitted annually by each device type and mode.
     }
 
+    // This method is called when the user clicks the onViewMyProfileButton
     @FXML
     private void onViewMyProfile() {
         try {
@@ -63,6 +66,7 @@ public class HomeScreenController {
         }
     }
 
+    // This method is called when the user clicks the onViewMyDeviceButton
     @FXML
     private void onViewMyDevice() {
         try {
@@ -79,6 +83,8 @@ public class HomeScreenController {
             e.getCause();
         }
     }
+
+    // This method is called when the user clicks the onAddDeviceInformationButton
     @FXML
     private void onAddDeviceInformation() {
         try {
@@ -96,32 +102,48 @@ public class HomeScreenController {
         }
     }
 
+    // This method is called when the user clicks the calculateMyCFButton
     @FXML
     private void calculateMyCF() {
         List<Device> devices = new DeviceDetailsService().getDeviceDetails(staticUser.getUsrID());
         calculateTotalCF(devices);
     }
 
+    // This method is called when the user clicks the calculateAllCFButton
     @FXML
     private void calculateAllCF() {
         List<Device> devices = new DeviceDetailsService().getAllDeviceDetails();
         calculateTotalCF(devices);
     }
 
+    /**
+     * Calculates the total carbon footprint of all devices
+     * and displays an alert with the result.
+     * @param devices List of Device objects to calculate carbon footprint for
+     */
     private void calculateTotalCF(List<Device> devices) {
+        // initialize totalCFKilograms with 0
         AtomicReference<Double> totalCFKilograms = new AtomicReference<>((double) 0);
+        // calculate the total carbon footprint for all devices
         devices.forEach(x -> totalCFKilograms.set(totalCFKilograms.get() + (annualCOTwoe.get(x.getDeviceType()) * 0.85 + annualCOTwoe.get(x.getDeviceMode()))));
 
+        // display an alert with the result
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Alert!");
         alert.setHeaderText("Carbon Usage " + totalCFKilograms +"kg");
         alert.showAndWait();
     }
 
+    /**
+     * Generates a report of all devices with their carbon usage details
+     * and saves it to an excel file.
+     */
     @FXML
     private void generateReport() {
+        // get all device and user details
         List<GenerateReport> reports = new DeviceDetailsService().getAllDeviceANDUserDetails();
 
+        // create a new excel workbook and sheet
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("CarbonUsageDetails");
         XSSFRow header = sheet.createRow(0);
@@ -131,6 +153,7 @@ public class HomeScreenController {
         header.createCell(3).setCellValue("CQU Email");
         header.createCell(4).setCellValue("Phone Number");
 
+        // add data for each device to the excel sheet
         AtomicInteger index = new AtomicInteger(1);
         reports.forEach(x -> {
             XSSFRow row = sheet.createRow(index.get());
@@ -147,6 +170,7 @@ public class HomeScreenController {
             workbook.write(fileOutputStream);
             fileOutputStream.close();
 
+            // display an alert to notify the user that the report has been downloaded
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information Alert!");
             alert.setHeaderText("Report has been downloaded.");

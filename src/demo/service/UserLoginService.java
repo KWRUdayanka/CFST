@@ -1,3 +1,8 @@
+/**
+
+ This class handles the authentication of users logging into the system.
+ It checks if the user exists in the database and if the provided password matches the stored password for the user.
+ */
 package demo.service;
 
 import demo.DBConnection;
@@ -12,6 +17,12 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
 public class UserLoginService {
+
+    /**
+     * Authenticates a user's login credentials.
+     * @param login The login credentials provided by the user.
+     * @return A Pair object containing a boolean indicating whether the login was successful and a User object containing the user's details if the login was successful.
+     */
     public Pair<Boolean,User> onUserLogin(Login login) {
         DBConnection conn = new DBConnection();
         Connection dbConnection = null;
@@ -44,6 +55,11 @@ public class UserLoginService {
         }
     }
 
+    /**
+     * Encrypts a password using SHA-256 algorithm.
+     * @param base The password to be encrypted.
+     * @return The encrypted password in hexadecimal format.
+     */
     public String encryptPassword(String base) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");

@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 
 public class DeviceInformationController implements Initializable{
 
+    // These are the JavaFX elements defined in the corresponding FXML file
     @FXML
     private Button homeButton;
     @FXML
@@ -24,30 +25,38 @@ public class DeviceInformationController implements Initializable{
     private Label saveDeviceErrorMessage;
     @FXML
     public ChoiceBox<String> deviceTypeChoiceBox;
+    // These are the options that will be displayed in the deviceTypeChoiceBox
     private final String[] deviceTypes = {"Desktop + Screen", "Laptop + Screen", "Desktop + 2 screens", "Laptop + screen at office + screen at home" + "Desktop + screen + laptop"};
     @FXML
     private ChoiceBox<String> ownershipChoiceBox;
+    // These are the options that will be displayed in the ownershipChoiceBox
     private final String[] ownership = {"Owned","University"};
     @FXML
     private ChoiceBox<String> usageChoiceBox;
+    // These are the options that will be displayed in the usageChoiceBox
     private final String [] usage = {"Work", "Study"};
     @FXML
     private TextField manufacturedDateFiled;
     @FXML
     private ChoiceBox<String> deviceModeChoiceBox;
+    // These are the options that will be displayed in the deviceModeChoiceBox
     private final String [] deviceMode = {"Active", "With default power saving features", "Shutdown when not in use", "Turned off at wall when not in use"};
 
     @FXML
     private ChoiceBox<String> locationChoiceBox;
+    // These are the options that will be displayed in the locationChoiceBox
     private final String[] location = {"Home", "Campus"};
     @FXML
     public static User user;
 
+    // This method is called when the user clicks the Save Device button
     @FXML
     private void onSaveDevice() {
+        // Check if any of the required fields is empty
         if (deviceTypeChoiceBox.getValue().equals("Device Type") || ownershipChoiceBox.getValue().equals("Owner Ship")
                 || usageChoiceBox.getValue().equals("Usage of Device") || locationChoiceBox.getValue().equals("Location")
                 || deviceModeChoiceBox.getValue().equals("Device Mode")) {
+            // If any of the required fields is empty, display an error message
             saveDeviceErrorMessage.setText("Dropbox data should Not be empty!");
         } else {
             Device device = new Device();
@@ -59,12 +68,14 @@ public class DeviceInformationController implements Initializable{
             device.setLocation(locationChoiceBox.getValue());
             device.setUserId(user.getUsrID());
 
+            // Add the new device to the database using the AddDeviceService
             new AddDeviceService().addDeviceToDatabase(device);
-
+            // Display a success message
             saveDeviceSuccessMessage.setText("Save Device Successfully!");
         }
     }
 
+    // This method is called when the user clicks the Home button
     @FXML
     private void goToHome() {
         Stage stage = (Stage) homeButton.getScene().getWindow();
