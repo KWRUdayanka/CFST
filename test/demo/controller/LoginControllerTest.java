@@ -16,12 +16,12 @@ import org.junit.jupiter.api.Test;
 class LoginControllerTest {
     @Test
     void testLoginWhenInvalidCredentials() {
-        loginValidation("test@cqu.edu.au", "12345");
+        loginValidation("senanayaka@@cqu.edu.au", "12345");
     }
 
     @Test
     void testLoginWhenValidCredentials() {
-        loginValidation("done@cqu.edu.au", "1234");
+        loginValidation("s.senanayaka@@cqu.edu.au", "1234");
     }
 
     private void loginValidation(String email, String password) {

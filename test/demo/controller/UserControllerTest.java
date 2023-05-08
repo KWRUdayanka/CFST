@@ -11,19 +11,19 @@ class UserControllerTest {
     @Test
     void testRegisterWhenUserCreate() {
         User user = new User();
-        user.setFullName("Blob Blob");
-        user.setCquEmail("b.blob@@cqu.edu.au");
+        user.setFullName("Sanuri Senanayake");
+        user.setCquEmail("s.senanayaka@@cqu.edu.au");
         user.setPassword("1234");
         user.setType("Student");
         user.setAddress("asasasas");
-        user.setPhoneNumber("61455469123");
+        user.setPhoneNumber("61455469929");
         new UserRegistrationService().userRegistration(user);
     }
 
     @Test
     void testRegisterWhenUserCreateFieldsNotFill() {
         User user = new User();
-        user.setFullName("Blob Blob");
+        user.setFullName("Sanuri Senanayake");
         user.setPassword("1234");
         user.setType("Student");
         user.setAddress("asasasas");
@@ -34,8 +34,8 @@ class UserControllerTest {
     @Test
     void testRegisterWhenUserCreateWithDuplicateFiled() {
         User user = new User();
-        user.setFullName("aaaaa");
-        user.setCquEmail("a.blob@@cqu.edu.au");
+        user.setFullName("Sanuri");
+        user.setCquEmail("s.senanayaka@@cqu.edu.au");
         user.setPassword("1234");
         user.setType("Student");
         user.setAddress("asasasas");
