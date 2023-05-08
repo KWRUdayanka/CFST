@@ -1,3 +1,9 @@
+/**
+ *  This class contains test methods for testing the functionality of LoginController
+ *  The class uses JUnit 5 testing framework for writing the test cases
+ *  The methods test the login functionality with different input values
+ *  It uses the UserLoginService class to verify the credentials and prints the result of the login test
+ * */
 package demo.controller;
 
 import demo.persistance.Login;
